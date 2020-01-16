@@ -1,8 +1,8 @@
-package com.hendisantika.uploaddownload.service;
+package com.vova.trackingupload.service;
 
-import com.hendisantika.uploaddownload.exception.FileStorageException;
-import com.hendisantika.uploaddownload.exception.MyFileNotFoundException;
-import com.hendisantika.uploaddownload.property.FileStorageProperties;
+import com.vova.trackingupload.exception.FileStorageException;
+import com.vova.trackingupload.exception.MyFileNotFoundException;
+import com.vova.trackingupload.property.FileStorageProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.nio.file.Files;
@@ -17,16 +18,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 
-/**
- * Created by IntelliJ IDEA.
- * Project : spring-boot-upload-download-file-rest-api-example
- * User: hendisantika
- * Email: hendisantika@gmail.com
- * Telegram : @hendisantika34
- * Date: 2018-11-28
- * Time: 22:48
- * To change this template use File | Settings | File Templates.
- */
+
 @Service
 public class FileStorageService {
 
@@ -77,4 +69,14 @@ public class FileStorageService {
             throw new MyFileNotFoundException("File not found " + fileName, ex);
         }
     }
+
+    public File loadFile(String fileName) throws IOException {
+        return new File(this.fileStorageLocation.toString() + "/" + fileName);
+    }
+
+    public void deleteFile(String fileName) throws IOException {
+
+        new File(this.fileStorageLocation + "/" + fileName).delete();
+    }
+
 }
