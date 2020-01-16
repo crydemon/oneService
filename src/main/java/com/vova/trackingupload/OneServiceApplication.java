@@ -14,10 +14,10 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 })
 
 @SpringBootApplication
-public class SpringBootUploadDownloadFileRestApiExampleApplication {
+public class OneServiceApplication {
 
 
     public static void main(String[] args) {
-        SpringApplication.run(SpringBootUploadDownloadFileRestApiExampleApplication.class, args);
+        SpringApplication.run(OneServiceApplication.class, args);
     }
 }
